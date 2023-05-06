@@ -1,6 +1,3 @@
-# Please specify the ip addresses and connection settings for your environment
-# The specified ip addresses will be used to listen by the cluster components.
-
 # "postgresql_exists='true'" if PostgreSQL is already exists and running
 # "hostname=" variable is optional (used to change the server name)
 # "new_node=true" to add a new server to an existing cluster using the add_pgnode.yml playbook
@@ -10,25 +7,23 @@
 
 # if dcs_exists: false and dcs_type: "etcd"
 [etcd_cluster]  # recommendation: 3, or 5-7 nodes
-10.128.64.140
-10.128.64.142
-10.128.64.143
+10.128.0.40
+10.128.0.41
+10.128.0.42
+
 
 # if with_haproxy_load_balancing: true
 [balancers]
-10.128.64.140
-10.128.64.142
-10.128.64.143
-#10.128.64.144 new_node=true
+10.128.0.40
+10.128.0.41
+10.128.0.42
 
 # PostgreSQL nodes
 [master]
-10.128.64.140 hostname=pgnode01 postgresql_exists='false'
+10.128.0.40 postgresql_exists='false'
 
 [replica]
-10.128.64.142 hostname=pgnode02 postgresql_exists='false'
-10.128.64.143 hostname=pgnode03 postgresql_exists='false'
-#10.128.64.144 hostname=pgnode04 postgresql_exists='false' new_node=true
+10.128.0.41 postgresql_exists='false'
 
 [postgres_cluster:children]
 master
